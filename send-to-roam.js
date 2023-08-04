@@ -24,24 +24,26 @@ let body = args.shortcutParameter
 
 let request = new Request(endpoint)
 request.headers = {
-  "accept": "application/json",
-  "Content-Type": "application/json",
-  "Authorization": headerToken,
+    "accept": "application/json",
+    "Content-Type": "application/json",
+    "Authorization": headerToken,
 }
 request.body = JSON.stringify(body)
 request.method = "POST"
 request.allowInsecureRequest = true
-request.onRedirect = 
- (request) => {
-  request.headers = {...{
-  "accept": "application/json",
-  "Content-Type": "application/json",
-  "Authorization": headerToken,
-  }}
-  
-  request.body = JSON.stringify(body)
-  return request
-}
+request.onRedirect =
+    (request) => {
+        request.headers = {
+            ...{
+                "accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": headerToken,
+            }
+        }
+
+        request.body = JSON.stringify(body)
+        return request
+    }
 
 let promise = request.loadJSON()
 
