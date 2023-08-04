@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "teal",
+    "glyph" : "magic"
+  },
+  "name" : "Send to Roam",
+  "script" : "\n\nlet url = \"\"\n\/\/ \n\/\/ new Request()\n\n\/\/ let alert = new Alert()\n\/\/ alert.message = args.shortcutParameter\n\/\/ \n\/\/ alert.message = \"jjj\"\n\/\/ \n\/\/ alert.presentAlert()\n\n\/\/ QuickLook.present(args.shortcutParameter)\n\nlet headerToken = args.plainTexts[0]\nlet endpoint = args.urls[0]\nlet body = args.shortcutParameter\n\n\/\/ let notification = new Notification()\n\/\/ notification.body = JSON.stringify(body)\n\/\/ notification.schedule()\n\nlet request = new Request(endpoint)\nrequest.headers = {\n  \"accept\": \"application\/json\",\n  \"Content-Type\": \"application\/json\",\n  \"Authorization\": headerToken,\n}\nrequest.body = JSON.stringify(body)\nrequest.method = \"POST\"\nrequest.allowInsecureRequest = true\nrequest.onRedirect = \n (request) => {\n  request.headers = {...{\n  \"accept\": \"application\/json\",\n  \"Content-Type\": \"application\/json\",\n  \"Authorization\": headerToken,\n  }}\n  \n  request.body = JSON.stringify(body)\n  return request\n}\n\nlet promise = request.loadJSON()\n\n\/\/ promise.then(() => {\n\/\/   let response = request.response\n\/\/   let notification = new Notification()\n\/\/   notification.body = JSON.stringify(\"response\")\n\/\/   notification.schedule()\n\/\/ \n\/\/ })\n\n\n\nScript.complete()\n",
+  "share_sheet_inputs" : [
+
+  ]
+}
