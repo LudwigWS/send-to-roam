@@ -4,7 +4,7 @@ Send to Roam Research using Shortcuts and Scriptable
 ## Requirements
 
 - iOS App: Scriptable, a free App used for sending a network to Roam Research
-- Install Send to Roam.scriptable in iOS, URL: https://github.com/LudwigWS/send-to-roam/blob/main/Send%20to%20Roam.scriptable
+- Create a script named "Send to Roam" in Scriptable and copy the content of send-to-roam.js into it
 
 ## If it doesn't work
 
